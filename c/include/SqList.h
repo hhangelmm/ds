@@ -17,5 +17,5 @@ int InitList_Sq( SqList *L);
 int ListInsert_Sq(SqList *L,ElemType e,int i);
 int ListDelete_Sq(SqList *L, int i, ElemType *e);
 void MergeList_Sq(SqList *La,SqList *Lb,SqList *Lc);
-
+void destroyListSq(SqList *La);
 #endif /* !SqList_H */

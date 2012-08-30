@@ -65,4 +65,8 @@ void MergeList_Sq(SqList *La,SqList *Lb,SqList *Lc)
 	while (pa<=pa_last) *pc++ = *pa++;
 	while (pb<=pb_last) *pc++ = *pb++;
 }
-
+void destroyListSq(SqList *La)
+{
+	free(La->elem);
+	La->elem = NULL;
+}
