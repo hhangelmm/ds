@@ -32,14 +32,14 @@ int main(int argc, char const *argv[])
 	//linkList test
 	linkList La;
 	ElemType e;
-	initLinkList(La);
-	linkListInsert(La,1,0);
-	linkListInsert(La,4,0);
-	linkListInsert(La,6,0);
-	linkListInsert(La,8,0);
-	linkListDelete(La,4,&e);
-	printf(La);
-	destroylinkList(La);
+	initLinkList(&La); 
+	linkListInsert(&La,1,0);
+	linkListInsert(&La,4,0);
+	linkListInsert(&La,6,0);
+	linkListInsert(&La,8,0);
+	linkListDelete(&La,4,&e);
+	print(&La);
+	destroylinkList(&La);
 	//end linkListe test
 	return 0;
 }
