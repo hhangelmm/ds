@@ -51,12 +51,26 @@ void MergeList_Sq(SqList *La,SqList *Lb,SqList *Lc)
 {
 	ElemType *pa = La->elem;
 	ElemType *pb = Lb->elem;
+	ElemType *pa_last = La->elem+La->length-1;
+	ElemType *pb_last = Lb->elem+Lb->length-1;
+	while(pa <= pa_last){
+		if(*pa > *(pa+1)){
+			printf("the list not sorted!");
+			return;
+		}
+		pa++;
+	}
+	while(pb <= pb_last){
+		if(*pb > *(pb+1)){
+			 printf("the list not sorted!");
+			 return;
+		}
+		pb++;
+    } 
 	Lc->listsize = Lc->length = La->length + Lb->length;
 	ElemType *pc = Lc->elem = (ElemType *)malloc(Lc->listsize*sizeof(ElemType));
 	if(!Lc->elem)
 		exit(0);
-	ElemType *pa_last = La->elem+La->length-1;
-	ElemType *pb_last = Lb->elem+Lb->length-1;
 	while(pa <= pa_last && pb <= pb_last)
 	{
 		if(*pa<=*pb) *pc++ = *pa++;

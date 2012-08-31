@@ -1,8 +1,10 @@
 #include "SqList.h"
+#include "linkList.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
 {
+	/*SqList test 
 	SqList sq ,sq2,sq3;
 	ElemType e;
 	InitList_Sq(&sq);
@@ -14,7 +16,7 @@ int main(int argc, char const *argv[])
 	ListDelete_Sq(&sq,3,&e);
 
 	ListInsert_Sq(&sq2,1,0);
-	ListInsert_Sq(&sq2,4,0);
+	ListInsert_Sq(&sq2,8,0);
 	ListInsert_Sq(&sq2,5,0);
 
 	MergeList_Sq(&sq,&sq2,&sq3);
@@ -26,5 +28,18 @@ int main(int argc, char const *argv[])
 	destroyListSq(&sq);
 	destroyListSq(&sq2);
 	destroyListSq(&sq3);
+	//end SqList test */
+	//linkList test
+	linkList La;
+	ElemType e;
+	initLinkList(La);
+	linkListInsert(La,1,0);
+	linkListInsert(La,4,0);
+	linkListInsert(La,6,0);
+	linkListInsert(La,8,0);
+	linkListDelete(La,4,&e);
+	printf(La);
+	destroylinkList(La);
+	//end linkListe test
 	return 0;
 }
