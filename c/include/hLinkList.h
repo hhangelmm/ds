@@ -1,8 +1,8 @@
 /*
  * 带头节点的单链表
  */
-#ifndef LINKLIST_H
-#define LINKLIST_H 
+#ifndef HLINKLIST_H
+#define HLINKLIST_H 
 typedef int ElemType;
 typedef struct LNode{
 	ElemType data;
@@ -11,31 +11,31 @@ typedef struct LNode{
 typedef struct{
 	Link head,tail;
 	int len;
-}LinkList;
+}hLinkList;
 
-bool MakeNode(Link &p,ElemType e);
-void FreeNode(Link &p);
-bool InitList(LinkList &L);
-bool DestroyList(LinkList &L);
-bool ClearList(LinkList &L);
-bool InsFirst(Link h,Link s);
-bool DelFirst(Link h,Link &q);
-bool Append(LinkList &L,Link s);
-bool Remove(LinkList &L,Link &q);
-bool InsBefore(LinkList &L,Link &p,Link s);
-bool InsAfter(LinkList &L,Link &p,Link s);
-bool SetCurElem(Link &p,ElemType e);
+int MakeNode(Link p,ElemType e);
+void FreeNode(Link p);
+int InitList(hLinkList *L);
+int DestroyList(hLinkList *L);
+int ClearList(hLinkList *L);
+int InsFirst(hLinkList *h,Link s);
+int DelFirst(hLinkList *h,Link q);
+int Append(hLinkList *L,Link s);
+int Remove(hLinkList *L,Link q);
+int InsBefore(hLinkList *L,Link p,Link s);
+int InsAfter(hLinkList *L,Link p,Link s);
+int SetCurElem(Link p,ElemType e);
 ElemType GetCurElem(Link p);
-bool ListEmpty(LinkList L);
-int ListLength(LinkList L);
-Position GetHead(LinkList L);
-Position GetLast(LinkList L);
-Position PriorPos(LinkList L,Link p);
-Posotion NextPos(LinkList L,Link p);
-bool LocatePos(LinkList L,int i, Link &p);
-Position LocateElem(LinkList L,ElemType e);
-bool ListTraverse(LinkList L,void (* visit)());
+int ListEmpty(hLinkList *L);
+int ListLength(hLinkList *L);
+Position GetHead(hLinkList *L);
+Position GetLast(hLinkList *L);
+Position PriorPos(hLinkList *L,Link p);
+Posotion NextPos(hLinkList *L,Link p);
+int LocatePos(hLinkList L,int i, Link p);
+Position LocateElem(hLinkList *L,ElemType e);
+int ListTraverse(hLinkList *L,void (* visit)());
 
-void MergeList(LinkList &La,LinkList &Lb,LinkList &Lc);
+void MergeList(hLinkList La,hLinkList Lb,hLinkList Lc);
  
-#endif /* LINKLIST_H */
+#endif /* HLINKLIST_H */

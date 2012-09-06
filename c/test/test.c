@@ -1,7 +1,8 @@
 #include "SqList.h"
 #include "linkList.h"
 #include <stdio.h>
-
+#include <time.h>
+#pragma 
 int main(int argc, char const *argv[])
 {
 	/*SqList test 
@@ -19,7 +20,7 @@ int main(int argc, char const *argv[])
 	ListInsert_Sq(&sq2,8,0);
 	ListInsert_Sq(&sq2,5,0);
 
-	MergeList_Sq(&sq,&sq2,&sq3);
+	(MergeList_Sq(&sq,&sq2,&sq3);
 	int i=0;
 	while(i<sq3.length){
 		printf("%d\n",*(sq3.elem+i));
@@ -30,7 +31,7 @@ int main(int argc, char const *argv[])
 	destroyListSq(&sq3);
 	//end SqList test */
 	//linkList test
-	linkList La;
+	/*linkList La;
 	ElemType e;
 	initLinkList(&La); 
 	linkListInsert(&La,1,0);
@@ -39,7 +40,19 @@ int main(int argc, char const *argv[])
 	linkListInsert(&La,8,0);
 	linkListDelete(&La,4,&e);
 	print(&La);
-	destroylinkList(&La);
+	destroylinkList(&La);*/
 	//end linkListe test
+	
+//	time_t timet = 0x7fffffff;	
+//	printf("%s",ctime(&timet));
+//	int c = 'a';
+	int *d = NULL; 
+	unsigned int c = 1;
+	/*if(d<c)
+		printf("-1<1");
+	else
+		printf("-1>1");*/
+	int apple = sizeof ((int)(*d));
+	printf("%d",apple);
 	return 0;
 }
