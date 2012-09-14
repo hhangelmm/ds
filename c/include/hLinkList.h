@@ -13,7 +13,7 @@ typedef struct{
 	int len;
 }hLinkList;
 
-int MakeNode(Link p,ElemType e);
+int MakeNode(Link *p,ElemType e);
 void FreeNode(Link p);
 int InitList(hLinkList *L);
 int DestroyList(hLinkList *L);
