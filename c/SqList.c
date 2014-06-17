@@ -53,14 +53,14 @@ void MergeList_Sq(SqList *La,SqList *Lb,SqList *Lc)
 	ElemType *pb = Lb->elem;
 	ElemType *pa_last = La->elem+La->length-1;
 	ElemType *pb_last = Lb->elem+Lb->length-1;
-	while(pa <= pa_last){
+	while(pa < pa_last){
 		if(*pa > *(pa+1)){
 			printf("the list not sorted!");
 			return;
 		}
 		pa++;
 	}
-	while(pb <= pb_last){
+	while(pb < pb_last){
 		if(*pb > *(pb+1)){
 			 printf("the list not sorted!");
 			 return;
@@ -71,6 +71,7 @@ void MergeList_Sq(SqList *La,SqList *Lb,SqList *Lc)
 	ElemType *pc = Lc->elem = (ElemType *)malloc(Lc->listsize*sizeof(ElemType));
 	if(!Lc->elem)
 		exit(0);
+	pa = La->elem;pb = Lb->elem;
 	while(pa <= pa_last && pb <= pb_last)
 	{
 		if(*pa<=*pb) *pc++ = *pa++;
@@ -83,4 +84,15 @@ void destroyListSq(SqList *La)
 {
 	free(La->elem);
 	La->elem = NULL;
+	La->length = 0;
+	La->listsize = 0;
+}
+void printOut(SqList *L)
+{
+	int i = L->length;
+	while(i>0){
+		printf("%d,",*(L->elem + L->length - i));
+		i--;
+	}
+	printf("\n Length:%d, listsize:%d\n",L->length,L->listsize);
 }
