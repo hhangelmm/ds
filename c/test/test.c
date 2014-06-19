@@ -1,10 +1,10 @@
-#include "SqList.h"
+#include "linkList.h"
 #include <stdio.h>
 #include <time.h>
 #pragma 
 int main(int argc, char const *argv[])
 {
-	SqList test; 
+	/*SqList test; 
 	SqList sq ,sq2,sq3;
 	ElemType e;
 	InitList_Sq(&sq);
@@ -36,19 +36,25 @@ int main(int argc, char const *argv[])
 	destroyListSq(&sq2);
 	printOut(&sq2);
 	destroyListSq(&sq3);
-	printOut(&sq3);
+	printOut(&sq3);*/
 	//end SqList test 
 	//linkList test
-	/*linkList La;
+	linkList La ;
+	linkListInit(&La);
 	ElemType e;
-	initLinkList(&La); 
+	print(La);
 	linkListInsert(&La,1,0);
+	print(La);
 	linkListInsert(&La,4,0);
+	print(La);
 	linkListInsert(&La,6,0);
+	print(La);
 	linkListInsert(&La,8,0);
+	print(La);
 	linkListDelete(&La,4,&e);
-	print(&La);
-	destroylinkList(&La);*/
+	print(La);
+	printf("%d",e);
+	destroylinkList(&La);
 	//end linkListe test
 	
 //	time_t timet = 0x7fffffff;	

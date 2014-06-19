@@ -1,9 +1,8 @@
 #include	"linkList.h"
 #include <stdlib.h>
-
-int initLinkList( linkList *L)
+int linkListInit(linkList *L)
 {
-	*L = NULL;
+	*L =NULL;
 	return 1;
 }
 int linkListInsert(linkList *L,ElemType e,int i)
@@ -62,22 +61,52 @@ int linkListDelete(linkList *L, int i, ElemType *e)
 	}
 	return 1;
 }
-
-void linkListMerge(linkList La,linkList Lb,linkList Lc){
+void linkListMerge(linkList La,linkList Lb,linkList *Lc){
+	linkList pLa = La;
+	linkList pLb = Lb;
+	while(pLa->next){
+		if(pLa->elem > pLa->next->elem){
+			printf("pLa is not sorted!");
+		}
+		pLa = pLa->next; 
+	}
+	while(pLb->next){
+		if(pLb->elem > pLb->next->elem){
+			printf("pLb is not sorted!");
+		}
+		pLb = pLb->next;
+	}
+	while(La->next && Lb->next){
+		if(La->elem > Lb->elem){
+			linkListInsert(Lc,La->elem,0);
+			La = La->next;
+		}else{
+			linkListInsert(Lc,Lb->elem,0);
+			Lb = Lb->next;
+		}
+	}
+	if(La->next)
+		(*Lc)->next = La;
+	if(Lb->next)
+		(*Lc)->next = Lb;
 	return ;
 }
 void destroylinkList(linkList *La){
 	lNode *p = *La;
-	while(*La){
+	if(!*La)
+		return;
+	while((*La)->next){
 		p = *La;
 		*La = (*La)->next;
 		free(p);
 	}
 }
-void print(linkList *La){
-	while(*La){
-		printf("%d",(*La)->elem);
-		(*La) = (*La)->next;
-	}
+void print(linkList La){
+	if(La == NULL)
+		return;
+	do{
+		printf("%d",La->elem);
+		La = La->next;
+	}while(La);
 	printf("\n");
 }
