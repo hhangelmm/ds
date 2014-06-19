@@ -42,19 +42,23 @@ int main(int argc, char const *argv[])
 	linkList La ;
 	linkListInit(&La);
 	ElemType e;
-	print(La);
 	linkListInsert(&La,1,0);
-	print(La);
 	linkListInsert(&La,4,0);
-	print(La);
 	linkListInsert(&La,6,0);
-	print(La);
 	linkListInsert(&La,8,0);
 	print(La);
-	linkListDelete(&La,4,&e);
-	print(La);
-	printf("%d",e);
+	linkList Lb ;
+	linkListInit(&Lb);
+	linkListInsert(&Lb,3,0);
+	linkListInsert(&Lb,5,0);
+	linkListInsert(&Lb,9,0);
+	print(Lb);
+	linkList Lc ;
+	linkListInit(&Lc);
+	linkListMerge(La,Lb,&Lc);
+	print(Lc);
 	destroylinkList(&La);
+	print(La);
 	//end linkListe test
 	
 //	time_t timet = 0x7fffffff;	

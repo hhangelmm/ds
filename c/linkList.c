@@ -64,6 +64,7 @@ int linkListDelete(linkList *L, int i, ElemType *e)
 void linkListMerge(linkList La,linkList Lb,linkList *Lc){
 	linkList pLa = La;
 	linkList pLb = Lb;
+	linkList pLc = *Lc;
 	while(pLa->next){
 		if(pLa->elem > pLa->next->elem){
 			printf("pLa is not sorted!");
@@ -76,8 +77,8 @@ void linkListMerge(linkList La,linkList Lb,linkList *Lc){
 		}
 		pLb = pLb->next;
 	}
-	while(La->next && Lb->next){
-		if(La->elem > Lb->elem){
+	while(La && Lb){
+		if(La->elem < Lb->elem){
 			linkListInsert(Lc,La->elem,0);
 			La = La->next;
 		}else{
@@ -85,17 +86,21 @@ void linkListMerge(linkList La,linkList Lb,linkList *Lc){
 			Lb = Lb->next;
 		}
 	}
-	if(La->next)
-		(*Lc)->next = La;
-	if(Lb->next)
-		(*Lc)->next = Lb;
+	pLc = *Lc;
+	while(pLc->next){
+		pLc = pLc->next;
+	};
+	if(La)
+		pLc->next = La;
+	if(Lb)
+		pLc->next = Lb;
 	return ;
 }
 void destroylinkList(linkList *La){
 	lNode *p = *La;
 	if(!*La)
 		return;
-	while((*La)->next){
+	while(*La){
 		p = *La;
 		*La = (*La)->next;
 		free(p);
