@@ -1,22 +1,19 @@
-#include "loopList.h"
+#include "lStack.h"
 #include <stdio.h>
 #include <time.h>
 #pragma 
 int main(int argc, char const *argv[])
 {
-	loopList La;
-	InitList(&La);
-	Link p;
-	MakeNode(&p,2);
-	InsFirst(&La,p);
-	Print(La);
-	Link q;
-	MakeNode(&q,3);
-	InsFirst(&La,q);
-	Print(La);
-	struct LNode s;
-	DelFirst(&La,&s);
-	Print(La);
+	LStack Ls;
+	InitStack(&Ls);	
+	int a = 1348;
+	int b = a%8;
+	while(a){
+		Push(&Ls,b);
+		a = a/8;
+		b = a%8;
+	}
+	Print(Ls);
 //	time_t timet = 0x7fffffff;	
 //	printf("%s",ctime(&timet));
 //	int c = 'a';
