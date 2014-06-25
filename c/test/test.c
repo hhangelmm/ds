@@ -1,66 +1,22 @@
-#include "linkList.h"
+#include "loopList.h"
 #include <stdio.h>
 #include <time.h>
 #pragma 
 int main(int argc, char const *argv[])
 {
-	/*SqList test; 
-	SqList sq ,sq2,sq3;
-	ElemType e;
-	InitList_Sq(&sq);
-	printOut(&sq);
-	InitList_Sq(&sq2);
-	printOut(&sq2);
-	InitList_Sq(&sq3);
-	printOut(&sq3);
-	ListInsert_Sq(&sq,1,0);
-	printOut(&sq);
-	ListInsert_Sq(&sq,2,0);
-	printOut(&sq);
-	ListInsert_Sq(&sq,3,0);
-	printOut(&sq);
-	ListDelete_Sq(&sq,3,&e);
-	printOut(&sq);
-
-	ListInsert_Sq(&sq2,1,0);
-	printOut(&sq2);
-	ListInsert_Sq(&sq2,8,0);
-	printOut(&sq2);
-	ListInsert_Sq(&sq2,9,0);
-	printOut(&sq2);
-
-	MergeList_Sq(&sq,&sq2,&sq3);
-	printOut(&sq3);
-	destroyListSq(&sq);
-	printOut(&sq);
-	destroyListSq(&sq2);
-	printOut(&sq2);
-	destroyListSq(&sq3);
-	printOut(&sq3);*/
-	//end SqList test 
-	//linkList test
-	linkList La ;
-	linkListInit(&La);
-	ElemType e;
-	linkListInsert(&La,1,0);
-	linkListInsert(&La,4,0);
-	linkListInsert(&La,6,0);
-	linkListInsert(&La,8,0);
-	print(La);
-	linkList Lb ;
-	linkListInit(&Lb);
-	linkListInsert(&Lb,3,0);
-	linkListInsert(&Lb,5,0);
-	linkListInsert(&Lb,9,0);
-	print(Lb);
-	linkList Lc ;
-	linkListInit(&Lc);
-	linkListMerge(La,Lb,&Lc);
-	print(Lc);
-	destroylinkList(&La);
-	print(La);
-	//end linkListe test
-	
+	loopList La;
+	InitList(&La);
+	Link p;
+	MakeNode(&p,2);
+	InsFirst(&La,p);
+	Print(La);
+	Link q;
+	MakeNode(&q,3);
+	InsFirst(&La,q);
+	Print(La);
+	struct LNode s;
+	DelFirst(&La,&s);
+	Print(La);
 //	time_t timet = 0x7fffffff;	
 //	printf("%s",ctime(&timet));
 //	int c = 'a';
