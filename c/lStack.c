@@ -59,7 +59,7 @@ void Print(LStack S){
 	p = S.top;
 	printf("length : %d\n",S.stacklen);
 	while(p){
-		printf("%d,",p->data);
+		//printf("%d,",p->data);
 		p = p->next;
 	};
 	printf("\n");

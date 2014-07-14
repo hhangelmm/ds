@@ -47,6 +47,7 @@ int strstr_kmp(const char *str1,const char * str2, int pos)
 		return 0;
 }
 
+//TODO  求最长重复字串，最长公共字串
 int main()
 {
 	char *s1 = "asdfgsdfhasjasdkasd\0";

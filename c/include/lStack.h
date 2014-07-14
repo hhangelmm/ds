@@ -1,9 +1,10 @@
+#include "btree.h"
 /*
  *链栈
  */
 #ifndef LSTACK_H
 #define LSTACK_H
-typedef int ElemType;
+typedef Btree ElemType;
 typedef struct StackNode{
 	ElemType data;
 	struct StackNode * next;
