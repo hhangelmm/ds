@@ -75,4 +75,54 @@ void postOrder(Btree btree)
 }
 void spostOrder(Btree btree)
 {
+    LStack s ;
+    InitStack(&s);
+    Btree p = btree;
+    Btree pre = p;
+    int flag = 1;
+    while(p || !IsEmpty(s)) {
+        if(p && flag) {
+            Push(&s,p);
+            p = p->lchild;
+        }
+        else {
+            if(IsEmpty(s)) return;
+            GetTop(s,&p);
+            if(p->rchild  && p->rchild!=pre) {
+                p = p->rchild;
+                flag = 1;
+            }
+            else {
+                Pop(&s,&p);
+                printf("%d\t",p->data);
+                flag = 0;
+                pre = p;
+            }
+        }
+    }
+}
+void spostOrder2(Btree btree)
+{
+    LStack s ;
+    InitStack(&s);
+    Btree p = btree;
+    Btree pre = p;
+    while(p || !IsEmpty(s)) {
+        if(p) {
+            Push(&s,p);
+            p = p->lchild;
+        }
+        else {
+            if(IsEmpty(s)) return;
+            GetTop(s,&p);
+            if(p->rchild && p->rchild!=pre) {
+                p = p->rchild;
+            }
+            else {
+                Pop(&s,&p);
+                printf("%d\t",p->data);
+                pre = p;
+                p = null;
+            }
+        }
 }
