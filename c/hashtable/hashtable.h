@@ -44,10 +44,10 @@ hashtable *hashtable_create();
 int hashtable_resize(hashtable *htb);
 int hashtable_expand(hashtable *htb, unsigned long size);
 int hashtable_rehash(hashtable *htb, int n);
-int hashtable_add(hashtable *htb, void *key, void *val, void (*valDestructor)(void *val));
+int hashtable_set(hashtable *htb, void *key, void *val, void (*valDestructor)(void *val));
 int hashtable_delete(hashtable *htb, const void *key);
 void hashtable_release(hashtable *htb);
-void *hashtable_fetchvalue(hashtable *htb, const void *key);
+void *hashtable_get(hashtable *htb, const void *key);
 unsigned int murmurhash2_hashfunction(const void *buf, int len);
 void hashtable_empty(hashtable *htb);
 

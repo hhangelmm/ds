@@ -259,7 +259,7 @@ int hashtable_rehash(hashtable *htb, int n) {
  * The Last param is a function pointer used to free val of the node ,
  * if the val is not malloced, than pass NULL
  */
-int hashtable_add(hashtable *htb, void *key, void *val,void (*valDestructor)(void *val))
+int hashtable_set(hashtable *htb, void *key, void *val,void (*valDestructor)(void *val))
 {
     ht_node *node = hashtable_addraw(htb,key);
     if (!node)
@@ -354,7 +354,7 @@ ht_node *hashtable_find(hashtable *htb, const void *key)
     }
     return NULL;
 }
-void *hashtable_fetchvalue(hashtable *htb, const void *key) {
+void *hashtable_get(hashtable *htb, const void *key) {
     ht_node *he;
     he = hashtable_find(htb,key);
     return he ? hashtable_getval(he) : NULL;
