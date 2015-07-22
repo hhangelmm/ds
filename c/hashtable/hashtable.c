@@ -29,10 +29,6 @@ static unsigned long _hashtable_next_power(unsigned long size)
         i *= 2;
     }
 }
-static  uint32_t getblock32 ( const uint32_t * p, int i )
-{
-    return p[i];
-}
 static void _hashtable_reset(htable *ht)
 {
     ht->table = NULL;
@@ -167,6 +163,44 @@ void  hashtable_freeval(hashtable *htb, ht_node * he)
     if (he->valDestructor)
         he->valDestructor(he->val);
 }
+ht_node *hashtable_addraw(hashtable *htb, void *key)
+{
+    int index;
+    ht_node *node;
+    htable *ht;
+    if (hashtable_isrehashing(htb))
+        _hashtable_rehashstep(htb);
+
+    if ((index = _hashtable_keyindex(htb, key)) == -1)
+        return NULL;
+    ht = hashtable_isrehashing(htb) ? &htb->ht[1] : &htb->ht[0];
+    node = malloc(sizeof(*node));
+    node->next = ht->table[index];
+    ht->table[index] = node;
+    ht->used++;
+    hashtable_setkey(htb, node, key);
+    return node;
+}
+ht_node *hashtable_find(hashtable *htb, const void *key)
+{
+    ht_node *he;
+    unsigned int h, idx, table;
+    if (htb->ht[0].size == 0) return NULL; /* We don't have a table at all */
+
+    if (hashtable_isrehashing(htb)) _hashtable_rehashstep(htb);
+    h = murmurhash2_hashfunction(key,strlen(key));
+    for (table = 0; table <= 1; table++) {
+        idx = h & htb->ht[table].sizemask;
+        he = htb->ht[table].table[idx];
+        while(he) {
+            if (hashtable_comparekeys(htb, key, he->key))
+                return he;
+            he = he->next;
+        }
+        if (!hashtable_isrehashing(htb)) return NULL;
+    }
+    return NULL;
+}
 
 
 
@@ -269,24 +303,6 @@ int hashtable_set(hashtable *htb, void *key, void *val,void (*valDestructor)(voi
     return 1;
 }
 
-ht_node *hashtable_addraw(hashtable *htb, void *key)
-{
-    int index;
-    ht_node *node;
-    htable *ht;
-    if (hashtable_isrehashing(htb))
-        _hashtable_rehashstep(htb);
-
-    if ((index = _hashtable_keyindex(htb, key)) == -1)
-        return NULL;
-    ht = hashtable_isrehashing(htb) ? &htb->ht[1] : &htb->ht[0];
-    node = malloc(sizeof(*node));
-    node->next = ht->table[index];
-    ht->table[index] = node;
-    ht->used++;
-    hashtable_setkey(htb, node, key);
-    return node;
-}
 /* Search and remove an element */
 int hashtable_delete(hashtable *htb, const void *key)
 {
@@ -333,26 +349,6 @@ void hashtable_empty(hashtable *htb) {
     _hashtable_clear(htb,&htb->ht[0]);
     _hashtable_clear(htb,&htb->ht[1]);
     htb->rehashidx = -1;
-}
-ht_node *hashtable_find(hashtable *htb, const void *key)
-{
-    ht_node *he;
-    unsigned int h, idx, table;
-    if (htb->ht[0].size == 0) return NULL; /* We don't have a table at all */
-
-    if (hashtable_isrehashing(htb)) _hashtable_rehashstep(htb);
-    h = murmurhash2_hashfunction(key,strlen(key));
-    for (table = 0; table <= 1; table++) {
-        idx = h & htb->ht[table].sizemask;
-        he = htb->ht[table].table[idx];
-        while(he) {
-            if (hashtable_comparekeys(htb, key, he->key))
-                return he;
-            he = he->next;
-        }
-        if (!hashtable_isrehashing(htb)) return NULL;
-    }
-    return NULL;
 }
 void *hashtable_get(hashtable *htb, const void *key) {
     ht_node *he;
