@@ -54,5 +54,6 @@ void hashtable_release(hashtable *htb);
 void *hashtable_get(hashtable *htb, const void *key);
 unsigned int murmurhash2_hashfunction(const void *buf, int len);
 void hashtable_empty(hashtable *htb);
+int hashtable_is_empty(hashtable *htb);
 
 #endif /* __HASH_TABLE_H */

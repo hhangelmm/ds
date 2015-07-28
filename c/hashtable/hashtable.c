@@ -354,6 +354,14 @@ void hashtable_empty(hashtable *htb) {
     _hashtable_clear(htb,&htb->ht[1]);
     htb->rehashidx = -1;
 }
+int hashtable_is_empty(hashtable *htb) {
+    if(htb == NULL)
+        return 1;
+    if(htb->ht[0].used == 0 && htb->ht[1].used == 0)
+        return 1;
+    return 0;
+}
+
 void *hashtable_get(hashtable *htb, const void *key) {
     ht_node *he;
     he = hashtable_find(htb,key);
